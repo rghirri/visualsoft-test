@@ -51,6 +51,27 @@ class Join
 
         return $results->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    /**
+     * Get all the get Left Join data from database
+     *
+     * @param object $conn Connection to the database
+     *
+     * @return array An associative array of all the Left Join Data records
+     */
+    public static function getAllLeftJoin($conn)
+    {
+        $sql = "SELECT * 
+                FROM users
+                LEFT JOIN users_likes
+                on users.id = users_likes.user_id
+                LEFT JOIN likes
+                on users_likes.like_id = likes.id;";
+
+        $results = $conn->query($sql);
+
+        return $results->fetchAll(PDO::FETCH_ASSOC);
+    }
     
    }
 

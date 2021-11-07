@@ -17,3 +17,17 @@ $conn = require 'includes/db.php';
 
 // retreive batches from database
 $joins = Join::getAllJoin($conn);
+
+$leftJoins = Join::getAllLeftJoin($conn);
+
+//var_dump($joins);
+
+//var_dump($leftJoins);
+
+$loader = new \Twig\Loader\FilesystemLoader('views');
+$twig = new \Twig\Environment($loader);
+
+echo $twig->render('index.html', array(
+   'joins' => $joins,
+   'leftJoins' => $leftJoins
+));
